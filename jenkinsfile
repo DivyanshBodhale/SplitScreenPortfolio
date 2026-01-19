@@ -20,6 +20,7 @@ pipeline {
                     'passwordVariable':'DockerHubPass',
                     'usernameVariable':'DockerHubUser')]){
                 sh "docker login -u ${env.DockerHubUser} -p ${env.DockerHubPass} "
+                sh   "docker build -t split-portfolio ."
                 sh "docker image tag split-portfolio ${env.DockerHubUser}/split-portfolio:latest"
                 sh "docker push ${env.DockerHubUser}/split-portfolio:latest"
                 }
